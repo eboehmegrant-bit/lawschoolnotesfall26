@@ -9,7 +9,7 @@ The site has a home page plus two subject pages:
 
 ## How each page is organized
 
-Each subject page is split into **doctrine modules** (e.g. *Federalism & Congressional Power*, *Mens Rea*). Each module is a collapsible card, and the materials inside it are grouped by **type**:
+Each subject page is split into **doctrine modules**, one per doctrine in the course. Each module is a collapsible card, and the materials inside it are grouped by **type**:
 
 | Type id    | Shown as          | Use for                                       |
 |------------|-------------------|-----------------------------------------------|
@@ -28,7 +28,7 @@ Each page also has:
 - a **"Still needed"** line in each module listing the types nobody has added yet;
 - a **Course-Wide** module for full outlines and practice exams that span doctrines.
 
-You can link straight to a module, e.g. `con.html#equal-protection`.
+You can link straight to a module by its id, e.g. `con.html#course-wide`.
 
 ## Adding materials
 
@@ -38,18 +38,16 @@ Everything on the CON and CRIM pages comes from `resources.js`. To add something
 2. Open `resources.js`, click the pencil icon to edit, find the right doctrine, and add a line to its `materials` list:
 
    ```js
-   { type: "cases", title: "Gibbons v. Ogden (1824)", note: "Broad reading of \"commerce\" to include navigation" },
-   { type: "vocab", title: "Dormant Commerce Clause", note: "Implied limit on state laws that burden interstate commerce" },
-   { type: "visuals", title: "Commerce Clause flowchart", link: "resources/con/commerce-flowchart.png" },
-   { type: "notes", title: "Federalism outline", link: "resources/con/federalism-outline.pdf" },
+   { type: "cases", title: "Case name (year)", note: "Holding from class" },
+   { type: "vocab", title: "Term", note: "Definition from class" },
+   { type: "visuals", title: "Flowchart", link: "resources/con/flowchart.png" },
+   { type: "notes", title: "Outline", link: "resources/con/outline.pdf" },
    ```
 
    `link` and `note` are optional. Vocab, rules, and cases often don't need a file; the note can hold the definition or holding.
 3. Commit the change. The site updates within a minute or two.
 
 To add a new doctrine, copy one of the `{ id, name, summary, materials }` blocks in `resources.js` and give it a unique `id` (lowercase letters and dashes).
-
-The vocab, rules, and cases already in `resources.js` are a starting set of standard landmark material. Edit or remove them to match your professors' syllabi.
 
 ## Publishing with GitHub Pages
 
