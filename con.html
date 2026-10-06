@@ -16,15 +16,29 @@
   <header>
     <h1>CON</h1>
     <p>Constitutional Law</p>
-    <input id="search" type="search" placeholder="Search CON resources…" aria-label="Search resources">
   </header>
 
-  <main id="sections">
-    <noscript><p>Please enable JavaScript to see the resource list.</p></noscript>
+  <section class="panel" aria-labelledby="toc-heading">
+    <h2 id="toc-heading" class="label">Doctrines</h2>
+    <ul id="toc" class="toc"></ul>
+  </section>
+
+  <section class="panel controls" aria-label="Filters">
+    <input id="search" type="search" placeholder="Search CON terms, cases, notes…" aria-label="Search materials">
+    <h2 class="label">Material type</h2>
+    <div id="type-filter" class="chips"></div>
+  </section>
+
+  <div class="toolbar">
+    <button id="toggle-all" type="button" class="link-button">Expand all</button>
+  </div>
+
+  <main id="modules">
+    <noscript><p>Please enable JavaScript to see the materials.</p></noscript>
   </main>
 
   <footer>
-    <p>To add a resource, upload the file to the <code>resources/con/</code> folder and add an entry to <code>resources.js</code>.</p>
+    <p>To add materials, upload files to <code>resources/con/</code> and add entries to <code>resources.js</code>.</p>
   </footer>
 
   <script src="resources.js"></script>
