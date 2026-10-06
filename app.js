@@ -1,29 +1,36 @@
-const container = document.getElementById("courses");
+const subject = document.body.dataset.subject;
+const sections = SUBJECTS[subject] || [];
+const container = document.getElementById("sections");
 const search = document.getElementById("search");
+
+// Highlight the current page in the nav bar.
+for (const link of document.querySelectorAll("nav a")) {
+  if (link.getAttribute("href") === subject + ".html") link.setAttribute("aria-current", "page");
+}
 
 function render(filter) {
   const q = filter.trim().toLowerCase();
   container.innerHTML = "";
 
-  for (const course of COURSES) {
-    const courseMatches = course.name.toLowerCase().includes(q);
-    const items = course.items.filter((item) =>
-      courseMatches ||
+  for (const section of sections) {
+    const sectionMatches = section.name.toLowerCase().includes(q);
+    const items = section.items.filter((item) =>
+      sectionMatches ||
       item.title.toLowerCase().includes(q) ||
       (item.note || "").toLowerCase().includes(q)
     );
-    if (q && items.length === 0 && !courseMatches) continue;
+    if (q && items.length === 0 && !sectionMatches) continue;
 
-    const section = document.createElement("section");
+    const el = document.createElement("section");
     const heading = document.createElement("h2");
-    heading.textContent = course.name;
-    section.appendChild(heading);
+    heading.textContent = section.name;
+    el.appendChild(heading);
 
     if (items.length === 0) {
       const empty = document.createElement("p");
       empty.className = "empty";
       empty.textContent = "Nothing here yet.";
-      section.appendChild(empty);
+      el.appendChild(empty);
     } else {
       const list = document.createElement("ul");
       for (const item of items) {
@@ -44,9 +51,9 @@ function render(filter) {
         }
         list.appendChild(li);
       }
-      section.appendChild(list);
+      el.appendChild(list);
     }
-    container.appendChild(section);
+    container.appendChild(el);
   }
 
   if (!container.children.length) {
